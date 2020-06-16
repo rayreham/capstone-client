@@ -5,6 +5,7 @@ import {
   CampusContainer,
   AddCampusFormContainer,
   EditCampusFormContainer,
+  UserProfileContainer,
 } from "../containers";
 
 const RoutesView = () => {
@@ -18,6 +19,11 @@ const RoutesView = () => {
         exact
         path="/campuses/:id/edit"
         component={EditCampusFormContainer}
+      />
+      <Route
+        exact
+        path="/users/:id"
+        component={UserProfileContainer}
       />
     </Switch>
   );
