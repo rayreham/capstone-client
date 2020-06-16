@@ -1,0 +1,7 @@
+ul.students {
+  list-style-type: none;
+}
+
+li.student-name a {
+  color: red;
+}
