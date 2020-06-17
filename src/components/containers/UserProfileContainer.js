@@ -1,7 +1,6 @@
 import React, {Component} from "react"
 import {connect} from "react-redux";
 import {fetchUserThunk} from "../../thunks";
-
 import {UserProfileView} from "../views";
 
 class UserProfileContainer extends Component {

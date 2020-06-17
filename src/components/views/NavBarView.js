@@ -2,6 +2,7 @@ import React from "react";
 import "./styles/NavBarView.css";
 import { Link } from "react-router-dom";
 
+/*
 const NavBarView = (props) => {
   return (
     <nav>
@@ -19,3 +20,4 @@ const NavBarView = (props) => {
 };
 
 export default NavBarView;
+*/
