@@ -1,0 +1,13 @@
+.carousel-slide-display{
+    max-height: 100%;
+    background-size: cover;
+}
+
+img.picInCarousel.img-responsive{
+    max-height: 100%;
+    width: 100;
+}
+
+body{
+    background: tomato;
+}

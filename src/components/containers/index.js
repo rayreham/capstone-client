@@ -7,3 +7,4 @@ export { default as NavBarContainer } from "./NavBarContainer";
 export { default as StudentNameListContainer } from "./StudentNameListContainer";
 export { default as AddStudentToCampusContainer } from "./AddStudentToCampusContainer";
 export { default as UserProfileContainer } from "./UserProfileContainer";
+export { default as TrendingPageContainer } from "./TrendingPageContainer";

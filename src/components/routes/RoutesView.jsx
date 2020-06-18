@@ -6,6 +6,7 @@ import {
   AddCampusFormContainer,
   EditCampusFormContainer,
   UserProfileContainer,
+  TrendingPageContainer,
 } from "../containers";
 
 const RoutesView = () => {
@@ -25,6 +26,8 @@ const RoutesView = () => {
         path="/users/:id"
         component={UserProfileContainer}
       />
+
+      <Route exact path="/trending" component={TrendingPageContainer} />
     </Switch>
   );
 };
