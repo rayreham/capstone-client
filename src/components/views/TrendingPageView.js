@@ -8,25 +8,27 @@ const TrendingPageView = (props) => {
     console.log("The articles in the props" ,props.trendingArticles)
     console.log("call image url ", props.trendingArticles)
 
-    let carouselDisplay = props.trendingArticles.slice(0 , 5).map((article) => (
+    let carouselDisplay = props.trendingArticles.slice(0 , 5).map((article, index) => (
       <Carousel.Item key={article.id}>
         <Image className="picInCarousel" src={article.urlToImage} />
         <Carousel.Caption>
           <h3>{article.title}</h3>
+          <button onClick={(event) => props.handleClick(event, index)}>Bookmark Article</button>
         </Carousel.Caption>
       </Carousel.Item>
     ))
 
-    let articleCardDisplay = props.trendingArticles.slice(6 , 8).map((article) => (
+    let articleCardDisplay = props.trendingArticles.slice(6 , 8).map((article, index) => (
     
     <div className="card">
     <img className="card-img-top" src={article.urlToImage} alt={article.title} />
     <div className="card-body">
       <h5 className="card-title text-dark">{article.title}</h5>
     </div>
+    <button onClick={(event) => props.handleClick(event, index + 6)}>Bookmark Article</button>
 
     <a className="btn btn-flat text-danger p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent">Read More</a>
-    <div class="collapse" id="collapseContent">
+    <div className="collapse" id="collapseContent">
       <p className="card-text text-dark">{article.description}</p>
     </div>
   </div>
@@ -36,6 +38,7 @@ const TrendingPageView = (props) => {
 
     return (
 
+      <div>
       <div className="container">
       <div className="jumbotron-fluid">
         <div className="container">
@@ -51,7 +54,10 @@ const TrendingPageView = (props) => {
         {articleCardDisplay}
       </div>
       </div>
+
       </div>
+
+    </div>
     )
 }
 
