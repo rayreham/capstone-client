@@ -11,10 +11,14 @@ const TrendingPageView = (props) => {
     let carouselDisplay = props.trendingArticles.slice(0 , 5).map((article, index) => (
       <Carousel.Item key={article.id}>
         <Image className="picInCarousel" src={article.urlToImage} />
+        <div>
         <Carousel.Caption>
           <h3>{article.title}</h3>
-          <button onClick={(event) => props.handleClick(event, index)}>Bookmark Article</button>
+          {/* <button onClick={(event) => props.handleClick(event, index)}>Bookmark Article</button> */}
+
+          <span onClick={(event) => props.handleClick(event, index)} class="glyphicon glyphicon-bookmark onHoverPointer" aria-hidden="true"></span>
         </Carousel.Caption>
+        </div>
       </Carousel.Item>
     ))
 
@@ -23,11 +27,12 @@ const TrendingPageView = (props) => {
     <div className="card">
     <img className="card-img-top" src={article.urlToImage} alt={article.title} />
     <div className="card-body">
-      <h5 className="card-title text-dark">{article.title}</h5>
+      <h5 className="card-title text-dark title-font-size">{article.title}</h5>
     </div>
-    <button onClick={(event) => props.handleClick(event, index + 6)}>Bookmark Article</button>
+    {/* <button onClick={(event) => props.handleClick(event, index + 6)}>Bookmark Article</button> */}
 
-    <a className="btn btn-flat text-danger p-1 my-1 mr-0 mml-1 collapsed" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent">Read More</a>
+    <span onClick={(event) => props.handleClick(event, index + 6)} class="glyphicon glyphicon-bookmark onHoverPointer text-dark" aria-hidden="true"></span>
+    <a className="btn btn-flat text-danger p-1 my-1 mr-0 mml-1 collapsed default-font-size" data-toggle="collapse" href="#collapseContent" aria-expanded="false" aria-controls="collapseContent">Read More</a>
     <div className="collapse" id="collapseContent">
       <p className="card-text text-dark">{article.description}</p>
     </div>
@@ -42,7 +47,7 @@ const TrendingPageView = (props) => {
       <div className="container">
       <div className="jumbotron-fluid">
         <div className="container">
-          <h1>Trending News</h1>
+          <h1 className="title-font-size">Trending News</h1>
           <Carousel className="carousel-slide-display">
               {carouselDisplay}
           </Carousel>
@@ -55,6 +60,9 @@ const TrendingPageView = (props) => {
       </div>
       </div>
 
+<div className="dummy">
+  
+</div>
       </div>
 
     </div>

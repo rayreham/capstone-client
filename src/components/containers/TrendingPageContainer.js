@@ -23,6 +23,7 @@ class TrendingPageContainer extends Component {
         console.log("the article index clicked" , this.props.trendingArticles[index])
 
         //saveTrendingArticle(this.props.trendingArticles[index])
+        alert("adding to bookmark");
 
     }
 
