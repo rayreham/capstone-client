@@ -2,7 +2,7 @@
 
 //export { default as  } from "./";
 //export { default as  } from "./";
-//export { default as  } from "./";
+export { default as ArticleContainer } from "./ArticleContainer";
 export { default as SearchbarContainer } from "./SearchbarContainer";
 export { default as NavBarContainer } from "./NavBarContainer";
 export { default as UserProfileContainer } from "./UserProfileContainer";

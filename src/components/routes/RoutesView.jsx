@@ -9,10 +9,10 @@ import {
 const RoutesView = () => {
   return (
     <Switch>
+      {/* <Route exact path="/" component={Container} />
       <Route exact path="/" component={Container} />
       <Route exact path="/" component={Container} />
-      <Route exact path="/" component={Container} />
-      <Route exact path="/" component={Container} />
+      <Route exact path="/" component={Container} /> */}
 
       <Route
         exact
