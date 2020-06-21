@@ -42,10 +42,10 @@ export const fetchTrendingArticlesThunk = () => (dispatch) => {
 
 //new request thunk onclick that would be passed, and the object .put("/users/`${id}`" , articleInfo).
 export const saveTrendingArticleThunk = ({/*userId*/} , article) => (dispatch) => {
-
+    console.log("What was passed down to save TrendingArticleThunk" , article)
     return axios
     // .put(`/api/users/${id}` , index)
-    .put(`/api/users/` , article)
+    .put(`/api/users/getArticle` , article)
     .then((res) => console.log(res.data))
     .then((updatedUserBookMark) => {
         dispatch(saveTrendingArticle(updatedUserBookMark))

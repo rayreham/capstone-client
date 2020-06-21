@@ -22,15 +22,25 @@ class TrendingPageContainer extends Component {
         console.log("the article index clicked" , index)
         console.log("the article index clicked" , this.props.trendingArticles[index])
 
-        //saveTrendingArticle(this.props.trendingArticles[index])
+        this.props.saveTrendingArticle(this.props.trendingArticles[index])
         alert("adding to bookmark");
+
+    }
+
+    notifyClick = (e) => {
+        e.preventDefault();
+        //this.props.sendArticle({this.props.trendingArticles[1]})
+        //this.props.sendArticle(this.props.trendingArticles[index])
+
+        console.log("read more was pressed" , e.target)
+        //saveTrendingArticle(this.props.trendingArticles[index])
+        alert("clickd read more");
 
     }
 
     render()
     {
-        console.log("access article by index" , this.props.trendingArticles[1])
-        return(<TrendingPageView trendingArticles={this.props.trendingArticles} handleClick={this.handleClick}/>);
+        return(<TrendingPageView trendingArticles={this.props.trendingArticles} notifyClick={this.notifyClick} handleClick={this.handleClick}/>);
     }
  
 }
@@ -42,9 +52,11 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch) => {
+    console.log()
     return{
         fetchTrendingArticles: () => dispatch(fetchTrendingArticlesThunk()),
         //in save trendingarticlethunk, might need to pass in the user id that it came from
+        
         saveTrendingArticle: (article) => dispatch(saveTrendingArticleThunk(article))
     }
 }
