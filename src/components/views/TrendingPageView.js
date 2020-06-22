@@ -5,7 +5,6 @@ import "./styles/TrendingPage.css";
 import { trendingArticles } from "../../reducers";
 
 const TrendingPageView = (props) => {
-  
   console.log("The props that were passed down", props);
   console.log("The articles in the props", props.trendingArticles);
   console.log("call image url ", props.trendingArticles);
@@ -26,7 +25,7 @@ const TrendingPageView = (props) => {
               aria-hidden="true"
             ></span>
             <button
-              onClick={(event) => props.readFullArticleClick(event , index)}
+              onClick={(event) => props.readFullArticleClick(event, index)}
               type="button"
               className="btn btn-warning ml-5 mb-3 text-dark"
               data-toggle="modal"
@@ -34,7 +33,6 @@ const TrendingPageView = (props) => {
             >
               Read Full Article
             </button>
-
           </Carousel.Caption>
         </div>
       </Carousel.Item>
@@ -78,39 +76,63 @@ const TrendingPageView = (props) => {
         >
           <p className="card-text text-dark">{article.description}</p>
           <button
-              type="button"
-              className="btn btn-warning ml-5 mb-3 text-dark"
-              data-toggle="modal"
-              data-target="#exampleModalCenter"
-            >
-              Read Full Article
-            </button>
-
+            onClick={(event) => props.readFullArticleClick(event, index + 6)}
+            type="button"
+            className="btn btn-warning ml-5 mb-3 text-dark"
+            data-toggle="modal"
+            data-target="#exampleModalCenter"
+          >
+            Read Full Article
+          </button>
         </div>
       </div>
     ));
 
-    let displayModal = (
-      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h2 class="modal-title text-dark" id="exampleModalLongTitle">{props.currentArticleSelected.title}</h2>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+  let displayModal = (
+    <div
+      className="modal fade"
+      id="exampleModalCenter"
+      tabIndex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-content">
+          <div className="modal-header">
+            <h2 className="modal-title text-dark" id="exampleModalLongTitle">
+              {props.currentArticleSelected.title}
+            </h2>
+            <button
+              type="button"
+              className="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body text-dark">
-          {props.currentArticleSelected.content}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <div className="modal-body text-dark">
+            {props.currentArticleSelected.content}
 
+            {/* <iframe class="embed-responsive-item " src={props.currentArticleSelected.url} allowfullscreen></iframe> */}
+          </div>
+          <div className="modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <div className="text-dark">
+              <a href={props.currentArticleSelected.url} target="_blank" className="ml-3">Go to Website</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    )
+  );
 
   return (
     <div>
@@ -124,9 +146,7 @@ const TrendingPageView = (props) => {
           </div>
         </div>
 
-        <div>
-          {displayModal}
-        </div>
+        <div>{displayModal}</div>
 
         <div className="container mt-5">
           <div className="card-deck">{articleCardDisplay}</div>

@@ -30,6 +30,7 @@ const UserProfileView = (props) => {
         </a>
         <div key={articleInBookmark.index} className="collapse" id={`collapseContent${index}`}>
           <p className="card-text text-dark">{articleInBookmark.description}</p>
+          <a href={articleInBookmark.articleUrl} target="_blank" className="ml-3 text-primary">Go to Website</a>
         </div>
 
       

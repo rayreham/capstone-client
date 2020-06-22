@@ -13,11 +13,13 @@ const NavBarView = (props) => {
       
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li className="nav-item active mr-5">
-                <a className="nav-link default-font-size" href="#">Home <span className="sr-only">(current)</span></a>
+            <li className="nav-item mr-5">
+                {/* <a className="nav-link default-font-size" href="http://localhost:3000/">Home</a> */}
+                <Link className="default-font-size Gray" to="/" >Home</Link> 
               </li>
-              <li className="nav-item mr-5">
-                <a className="nav-link default-font-size" href="#">About</a>
+              <li className="nav-item mr-5">                    {/*Once we figure out how to keep track of user, this will be http://localhost:3000/users/${id}*/ }
+                {/* <a className="nav-link default-font-size" href="http://localhost:3000/users/2">Profile</a> */}
+                <Link className="default-font-size Gray" to="/users/2" >Profile</Link> 
               </li>
 
 
