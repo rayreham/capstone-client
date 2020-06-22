@@ -2,8 +2,10 @@ import React from "react";
 import { Carousel } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import "./styles/TrendingPage.css";
+import { trendingArticles } from "../../reducers";
 
 const TrendingPageView = (props) => {
+  
   console.log("The props that were passed down", props);
   console.log("The articles in the props", props.trendingArticles);
   console.log("call image url ", props.trendingArticles);
@@ -23,6 +25,16 @@ const TrendingPageView = (props) => {
               className="glyphicon glyphicon-bookmark onHoverPointer"
               aria-hidden="true"
             ></span>
+            <button
+              onClick={(event) => props.readFullArticleClick(event , index)}
+              type="button"
+              className="btn btn-warning ml-5 mb-3 text-dark"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+              Read Full Article
+            </button>
+
           </Carousel.Caption>
         </div>
       </Carousel.Item>
@@ -59,11 +71,46 @@ const TrendingPageView = (props) => {
         >
           Read More
         </a>
-        <div key={article.publishedAt} className="collapse" id={`collapseContent${index}`}>
+        <div
+          key={article.publishedAt}
+          className="collapse"
+          id={`collapseContent${index}`}
+        >
           <p className="card-text text-dark">{article.description}</p>
+          <button
+              type="button"
+              className="btn btn-warning ml-5 mb-3 text-dark"
+              data-toggle="modal"
+              data-target="#exampleModalCenter"
+            >
+              Read Full Article
+            </button>
+
         </div>
       </div>
     ));
+
+    let displayModal = (
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title text-dark" id="exampleModalLongTitle">{props.currentArticleSelected.title}</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body text-dark">
+          {props.currentArticleSelected.content}
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    )
 
   return (
     <div>
@@ -75,6 +122,10 @@ const TrendingPageView = (props) => {
               {carouselDisplay}
             </Carousel>
           </div>
+        </div>
+
+        <div>
+          {displayModal}
         </div>
 
         <div className="container mt-5">

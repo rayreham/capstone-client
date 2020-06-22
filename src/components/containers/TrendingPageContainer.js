@@ -4,6 +4,12 @@ import {fetchTrendingArticlesThunk, saveTrendingArticleThunk} from "../../thunks
 import {TrendingPageView} from "../views";
 
 class TrendingPageContainer extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            currentArticleSelected : {}
+        }
+    }
 
     componentDidMount(){
         this.props.fetchTrendingArticles();
@@ -20,11 +26,16 @@ class TrendingPageContainer extends Component {
 
         //sending correct article indeces, now just need to make the thunk, and pass this to the thunk
         console.log("the article index clicked" , index)
-        console.log("the article index clicked" , this.props.trendingArticles[index])
+        console.log("the article info of index clicked" , this.props.trendingArticles[index])
 
         this.props.saveTrendingArticle(this.props.trendingArticles[index])
         alert("adding to bookmark");
 
+    }
+
+    handleReadFullArticleClick = (e, index) => {
+        this.setState({currentArticleSelected: this.props.trendingArticles[index]})
+        console.log("The current Article Selected" , this.state.currentArticleSelected)
     }
 
     notifyClick = (e) => {
@@ -40,7 +51,7 @@ class TrendingPageContainer extends Component {
 
     render()
     {
-        return(<TrendingPageView trendingArticles={this.props.trendingArticles} notifyClick={this.notifyClick} handleClick={this.handleClick}/>);
+        return(<TrendingPageView trendingArticles={this.props.trendingArticles} readFullArticleClick={this.handleReadFullArticleClick} handleClick={this.handleClick} currentArticleSelected={this.state.currentArticleSelected}/>);
     }
  
 }

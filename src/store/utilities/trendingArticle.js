@@ -15,10 +15,10 @@ const fetchTrendingArticle = (articles) => {
     }
 }
 
-const saveTrendingArticle = (trendingArticle) => {
+const saveTrendingArticle = (updatedUser) => {
     return{
         type: SAVE_TRENDING_ARTICLE,
-        payload: trendingArticle
+        payload: updatedUser
     }
 }
 
@@ -41,15 +41,30 @@ export const fetchTrendingArticlesThunk = () => (dispatch) => {
 }
 
 //new request thunk onclick that would be passed, and the object .put("/users/`${id}`" , articleInfo).
-export const saveTrendingArticleThunk = ({/*userId*/} , article) => (dispatch) => {
+export const saveTrendingArticleThunk = ( article) => (dispatch) => {
     console.log("What was passed down to save TrendingArticleThunk" , article)
+
+    const saveArticle = {
+        image: article.urlToImage,
+        head_line: article.title,
+        src_name: article.source.name,
+        author: article.author,
+        descrip: article.description,
+        article_url: article.url,
+        pub_date: article.publishedAt,
+        
+    }
     return axios
     // .put(`/api/users/${id}` , index)
-    .put(`/api/users/getArticle` , article)
-    .then((res) => console.log(res.data))
-    .then((updatedUserBookMark) => {
-        dispatch(saveTrendingArticle(updatedUserBookMark))
+    .put(`/api/users/getArticle` , saveArticle)
+    .then((res) => {
+        const data = res.data;
+
+        dispatch(saveTrendingArticle(data))
     })
+    // .then((updatedUserBookMark) => {
+    //     dispatch(saveTrendingArticle(updatedUserBookMark))
+    // })
     .catch((error) => console.log(error))
 }
 
@@ -59,9 +74,8 @@ const reducer = (state = [], action) => {
     switch(action.type){
         case FETCH_TRENDING_ARTICLE:
             return action.payload;
-        // case SAVE_TRENDING_ARTICLE:
-        //     return state.map((user) => 
-        //     user.id === ac)
+        case SAVE_TRENDING_ARTICLE:
+            return action.payload;
         default:
             return state;
     }
