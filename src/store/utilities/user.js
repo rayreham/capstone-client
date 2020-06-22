@@ -20,6 +20,8 @@ export const fetchUserThunk = (id) => (dispatch) => {
     .catch((err) => console.log(err));
 };
 
+
+
 //REDUCER
 const reducer = (state = {}, action ) => {
     switch(action.type){

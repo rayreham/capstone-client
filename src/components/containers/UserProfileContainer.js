@@ -7,12 +7,15 @@ import {UserProfileView} from "../views";
 class UserProfileContainer extends Component {
 
     componentDidMount(){
-        console.log("in comp did mount of user container")
+
+        console.log("whats in the store right now" , this.props)
         this.props.fetchUser(this.props.match.params.id);
     }
 
     render(){
-        return <UserProfileView user={this.props.user}/>
+
+          return <UserProfileView user={this.props.user}/>
+
     }
 }
 
