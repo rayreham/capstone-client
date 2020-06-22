@@ -51,14 +51,16 @@ class TrendingPageContainer extends Component {
 
     render()
     {
-        return(<TrendingPageView trendingArticles={this.props.trendingArticles} readFullArticleClick={this.handleReadFullArticleClick} handleClick={this.handleClick} currentArticleSelected={this.state.currentArticleSelected}/>);
+        return(<TrendingPageView trendingArticles={this.props.trendingArticles} bookmarkArticles={this.props.bookmarkArticles} readFullArticleClick={this.handleReadFullArticleClick} handleClick={this.handleClick} currentArticleSelected={this.state.currentArticleSelected}/>);
     }
  
 }
 
 const mapState = (state) => {
+    console.log("What is in the state" , state)
     return{
-        trendingArticles: state.trendingArticles
+       trendingArticles:state.articles.trendingArticles, 
+       bookmarkArticles:state.articles.bookmarkArticles
     }
 }
 

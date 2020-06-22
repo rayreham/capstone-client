@@ -6,10 +6,12 @@ import { trendingArticles } from "../../reducers";
 
 const TrendingPageView = (props) => {
   console.log("The props that were passed down", props);
-  console.log("The articles in the props", props.trendingArticles);
-  console.log("call image url ", props.trendingArticles);
+  // console.log("The articles in the props", props.trendingArticles);
+  // console.log("call image url ", props.trendingArticles);
+  console.log("Is this an array" , Array.isArray(props.trendingArticles))
+  console.log("Type of" , typeof props.trendingArticles)
 
-  let carouselDisplay = props.trendingArticles
+  let carouselDisplay = props.trendingArticles && props.trendingArticles
     .slice(0, 5)
     .map((article, index) => (
       <Carousel.Item key={article.publishedAt}>
@@ -38,7 +40,7 @@ const TrendingPageView = (props) => {
       </Carousel.Item>
     ));
 
-  let articleCardDisplay = props.trendingArticles
+  let articleCardDisplay = props.trendingArticles && props.trendingArticles
     .slice(6, 8)
     .map((article, index) => (
       <div key={article.publishedAt} className="card">

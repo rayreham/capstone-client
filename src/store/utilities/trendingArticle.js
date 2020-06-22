@@ -24,34 +24,32 @@ const saveTrendingArticle = (updatedUser) => {
 
 
 //THUNK CREATOR
-export const fetchTrendingArticlesThunk = () => (dispatch) => {
+export const fetchTrendingArticlesThunk = () => async(dispatch) => {
     
     const apiKey = process.env.REACT_APP_NEWS_API_KEY;
 
     const trendingUrl = "https://newsapi.org/v2/top-headlines?country=us&apiKey=" + apiKey;
+  
+    const allArticles = await axios.get(trendingUrl);
+    const trending = allArticles.data.articles;
 
-    return axios
-     .get(trendingUrl)
-    .then((response) => {
-        const data = response.data.articles;
-        
-        dispatch(fetchTrendingArticle(data))
-    })
-    .catch((err) => console.log(err));
+    dispatch(fetchTrendingArticle(trending));
+
 }
+
 
 //new request thunk onclick that would be passed, and the object .put("/users/`${id}`" , articleInfo).
 export const saveTrendingArticleThunk = ( article) => (dispatch) => {
     console.log("What was passed down to save TrendingArticleThunk" , article)
 
     const saveArticle = {
-        image: article.urlToImage,
-        head_line: article.title,
-        src_name: article.source.name,
+        imageUrl: article.urlToImage,
+        headline: article.title,
+        source: article.source.name,
         author: article.author,
-        descrip: article.description,
-        article_url: article.url,
-        pub_date: article.publishedAt,
+        description: article.description,
+        articleUrl: article.url,
+        publishedAt: article.publishedAt,
         
     }
     return axios
@@ -68,17 +66,20 @@ export const saveTrendingArticleThunk = ( article) => (dispatch) => {
     .catch((error) => console.log(error))
 }
 
+const initState = {trendingArticles:[] , bookmarkedArticle:[]};
 
 //REDUCER
-const reducer = (state = [], action) => {
+const reducer = (state = initState, action) => {
     switch(action.type){
         case FETCH_TRENDING_ARTICLE:
-            return action.payload;
+            return {...state, 
+                trendingArticles:action.payload}
         case SAVE_TRENDING_ARTICLE:
-            return action.payload;
+            return {...state, bookmarkedArticle:[...state.bookmarkedArticle , action.payload]} 
         default:
             return state;
     }
 }
 
 export default reducer;
+
