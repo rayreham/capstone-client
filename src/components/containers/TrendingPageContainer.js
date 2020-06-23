@@ -15,7 +15,6 @@ class TrendingPageContainer extends Component {
         this.props.fetchTrendingArticles();
         console.log("list of states in the store" , this.props.trendingArticles)
 
-
     }
 
 
