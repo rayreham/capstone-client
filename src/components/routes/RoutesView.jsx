@@ -1,29 +1,20 @@
-import React from 'react';
-import { Switch, Route } from 'react-router-dom';
-import { Login, Signup } from '../containers';
-
-
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import { Login, Signup } from "../containers";
+import { UserProfileContainer, TrendingPageContainer } from "../containers";
 
 const RoutesView = (props) => {
   //const { isLoggedIn } = props;
 
   return (
     <Switch>
-      {/* Routes placed within this section are available to all visitors */}
-      <Route exact path= "/login" component={Login} />
-      <Route exact path= "/signup" component={Signup} />
-      {/* {
-        isLoggedIn &&
-        <Switch>
-          <Route exact path = "/signup" component = {Signup} />  
-        </Switch>
-      } */}
-  
-      {/* Displays our Login component as a fallback */}
-      {/* <Route component={Signup} />
-      <Route component={Login} /> */}
+      <Route exact path="/users/:id" component={UserProfileContainer} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={Signup} />
+
+      <Route exact path="/" component={TrendingPageContainer} />
     </Switch>
   );
-}
+};
 
 export default RoutesView;
