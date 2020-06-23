@@ -13,6 +13,7 @@ const NavBarView = (props) => {
       
         <div className="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul className="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li className="nav-item text-white mr-5"><h1>GitNews</h1></li>
             <li className="nav-item mr-5">
                 {/* <a className="nav-link default-font-size" href="http://localhost:3000/">Home</a> */}
                 <Link className="default-font-size Gray" to="/" >Home</Link> 
