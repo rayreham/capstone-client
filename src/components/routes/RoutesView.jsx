@@ -13,6 +13,8 @@ const RoutesView = () => {
         path="/users/:id"
         component={UserProfileContainer}
       />
+      <Route exact path= "/login" component={Login} />
+      <Route exact path= "/signup" component={Signup} />
 
       <Route exact path="/" component={TrendingPageContainer} />
     </Switch>
