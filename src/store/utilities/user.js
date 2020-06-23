@@ -6,8 +6,16 @@ import axios from "axios";
 // ACTION TYPES
 const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
+const FETCH_USER = "FETCH_USER";
 
 // ACTION CREATORS
+const fetchUser = (user) => {
+  return {
+      type: FETCH_USER,
+      payload: user
+  }
+}
+
 const getUser = user => {
   return {
     type: GET_USER,
@@ -31,6 +39,15 @@ export const me = () => async dispatch => {
     console.error(err);
   }
 };
+
+export const fetchUserThunk = (id) => (dispatch) => {
+  return axios 
+  .get(`/api/users/${id}`)
+  .then((res) => res.data)
+  .then((user) => dispatch(fetchUser(user)))
+  .catch((err) => console.log(err));
+};
+
 
 export const auth = (email, password, method, ownProps) => async dispatch => {
   //   let res;
@@ -74,6 +91,8 @@ export const logout = () => async dispatch => {
 const reducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USER:
+      return action.payload;
+    case FETCH_USER:
       return action.payload;
     case REMOVE_USER:
       return {};
