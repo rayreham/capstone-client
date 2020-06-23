@@ -4,11 +4,8 @@ import axios from "axios"
 const FETCH_TRENDING_ARTICLE = "FETCH_TRENDING_ARTICLE"
 const SAVE_TRENDING_ARTICLE = "SAVE_TRENDING_ARTICLE"
 
-//Im sending in the article in params, but i need to update the user based on their id
-
 //ACTION CREATORS
 const fetchTrendingArticle = (articles) => {
-    console.log("in action creator log the articles fetched from api" , articles)
     return{ 
         type: FETCH_TRENDING_ARTICLE,
         payload: articles
@@ -39,9 +36,7 @@ export const fetchTrendingArticlesThunk = () => async(dispatch) => {
 
 
 //new request thunk onclick that would be passed, and the object .put("/users/`${id}`" , articleInfo).
-export const saveTrendingArticleThunk = ( article) => (dispatch) => {
-    console.log("What was passed down to save TrendingArticleThunk" , article)
-
+export const saveTrendingArticleThunk = (article , userId) => (dispatch) => {
     const saveArticle = {
         imageUrl: article.urlToImage,
         headline: article.title,
@@ -49,20 +44,16 @@ export const saveTrendingArticleThunk = ( article) => (dispatch) => {
         author: article.author,
         description: article.description,
         articleUrl: article.url,
-        publishedAt: article.publishedAt,
-        
+        publishedAt: article.publishedAt,        
     }
     return axios
-    // .put(`/api/users/${id}` , index)
-    .put(`/api/users/getArticle` , saveArticle)
+    .put(`/api/users/${userId}/addBookmark` , saveArticle)
+   // .put(`/api/users/getArticle` , saveArticle)
     .then((res) => {
         const data = res.data;
 
         dispatch(saveTrendingArticle(data))
     })
-    // .then((updatedUserBookMark) => {
-    //     dispatch(saveTrendingArticle(updatedUserBookMark))
-    // })
     .catch((error) => console.log(error))
 }
 

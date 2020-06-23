@@ -5,11 +5,6 @@ import "./styles/TrendingPage.css";
 import { trendingArticles } from "../../reducers";
 
 const TrendingPageView = (props) => {
-  console.log("The props that were passed down", props);
-  // console.log("The articles in the props", props.trendingArticles);
-  // console.log("call image url ", props.trendingArticles);
-  console.log("Is this an array" , Array.isArray(props.trendingArticles))
-  console.log("Type of" , typeof props.trendingArticles)
 
   let carouselDisplay = props.trendingArticles && props.trendingArticles
     .slice(0, 5)
@@ -19,7 +14,6 @@ const TrendingPageView = (props) => {
         <div>
           <Carousel.Caption>
             <h3>{article.title}</h3>
-            {/* <button onClick={(event) => props.handleClick(event, index)}>Bookmark Article</button> */}
 
             <span
               onClick={(event) => props.handleClick(event, index)}
@@ -54,9 +48,7 @@ const TrendingPageView = (props) => {
             {article.title}
           </h5>
         </div>
-        {/* <button onClick={(event) => props.handleClick(event, index + 6)}>Bookmark Article</button> */}
-
-        {console.log("list of article ids", article)}
+  
         <span
           onClick={(event) => props.handleClick(event, index + 6)}
           className="glyphicon glyphicon-bookmark onHoverPointer text-dark"
@@ -117,7 +109,6 @@ const TrendingPageView = (props) => {
           <div className="modal-body text-dark">
             {props.currentArticleSelected.content}
 
-            {/* <iframe class="embed-responsive-item " src={props.currentArticleSelected.url} allowfullscreen></iframe> */}
           </div>
           <div className="modal-footer">
             <button

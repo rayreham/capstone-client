@@ -1,8 +1,5 @@
 import axios from "axios";
 
-//import { useHistory } from "react-router-dom";
-
-
 // ACTION TYPES
 const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
@@ -50,20 +47,6 @@ export const fetchUserThunk = (id) => (dispatch) => {
 
 
 export const auth = (email, password, method, ownProps) => async dispatch => {
-  //   let res;
-  //   try {
-  //     res = await axios.post(`http://localhost:3000/auth/${method}`, { email, password }, { withCredentials: true })
-  //     .then(res =>{
-  //       dispatch(getUser(res.data))
-  //       this.context.history.push('/signup')
-  //     })
-  //   }
-  //   catch (authError) {
-  //     return dispatch(getUser({ error: authError }));
-  //   }
-  // }
-  // //let res;
-  //let history = useHistory();
   await axios.post(`http://localhost:3000/auth/${method}`, { email, password }, { withCredentials: true })
     .then(res => {
       dispatch(getUser(res.data))

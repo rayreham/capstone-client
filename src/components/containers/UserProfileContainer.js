@@ -7,9 +7,9 @@ import {UserProfileView} from "../views";
 class UserProfileContainer extends Component {
 
     componentDidMount(){
+        // this.props.fetchUser(this.props.match.params.id);
+        this.props.fetchUser(this.props.user.id);
 
-        console.log("whats in the store right now" , this.props)
-        this.props.fetchUser(this.props.match.params.id);
     }
 
     render(){
