@@ -3,6 +3,7 @@ import RoutesView from "./RoutesView";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { me } from "../../thunks";
+// import { isLoggedIn } from "../containers/AuthFormContainer";
 
 class RoutesContainer extends Component {
   componentDidMount() {

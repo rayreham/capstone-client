@@ -1,20 +1,23 @@
 import axios from "axios";
 
+//import { useHistory } from "react-router-dom";
+
+
 // ACTION TYPES
 const GET_USER = "GET_USER";
 const REMOVE_USER = "REMOVE_USER";
 
 // ACTION CREATORS
-const getUser = user => { 
+const getUser = user => {
   return {
     type: GET_USER,
     payload: user
   }
 }
 
-const removeUser = () => { 
-  return { 
-    type: REMOVE_USER 
+const removeUser = () => {
+  return {
+    type: REMOVE_USER
   }
 }
 
@@ -29,22 +32,33 @@ export const me = () => async dispatch => {
   }
 };
 
-export const auth = (email, password, method) => async dispatch => {
-  let res;
-  try {
-    res = await axios.post(`http://localhost:3000/auth/${method}`, { email, password }, { withCredentials: true });
-  }
-  catch (authError) {
-    return dispatch(getUser({ error: authError }));
-  }
+export const auth = (email, password, method, ownProps) => async dispatch => {
+  //   let res;
+  //   try {
+  //     res = await axios.post(`http://localhost:3000/auth/${method}`, { email, password }, { withCredentials: true })
+  //     .then(res =>{
+  //       dispatch(getUser(res.data))
+  //       this.context.history.push('/signup')
+  //     })
+  //   }
+  //   catch (authError) {
+  //     return dispatch(getUser({ error: authError }));
+  //   }
+  // }
+  // //let res;
+  //let history = useHistory();
+  await axios.post(`http://localhost:3000/auth/${method}`, { email, password }, { withCredentials: true })
+    .then(res => {
+      dispatch(getUser(res.data))
+      // eslint-disable-next-line no-restricted-globals
+      ownProps.history.push('/signup')
+    }, authError => {
+      dispatch(getUser({ error: authError }))
+    })
+    .catch(dispatchOrHistoryErr => console.error(dispatchOrHistoryErr))
+}
 
-  try {
-    dispatch(getUser(res.data));
-  }
-  catch (dispatchOrHistoryErr) {
-    console.error(dispatchOrHistoryErr);
-  }
-};
+
 
 export const logout = () => async dispatch => {
   try {
@@ -67,5 +81,6 @@ const reducer = (state = {}, action) => {
       return state;
   }
 }
+
 
 export default reducer;
